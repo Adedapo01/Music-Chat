@@ -91,6 +91,7 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 [This section will be completed in Unit 9]
 ### Models
 
+## Message
 | Property  | Type | Description  |
 | ------------- | ------------- | ------------- |
 | objectId  | String   | Unique id for a message   |
@@ -102,6 +103,7 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 
 
 ### Networking
+## List of network requests by screen
 * Messaging Screen 
    * (Read/GET) Query all messages where the user is author and receiver.
    ```swift
