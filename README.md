@@ -81,7 +81,7 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="wireframe.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
