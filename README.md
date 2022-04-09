@@ -80,7 +80,7 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
+
 <img src="wireframe.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
@@ -90,8 +90,44 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+| Property  | Type | Description  |
+| ------------- | ------------- | ------------- |
+| objectId  | String   | Unique id for a message   |
+| author  | Pointer to User | To identify a message sender  |
+| message  | String   | The message sent   |
+| sentAt  | DateTime | Date when a message is sent  |
+| receiver   | Pointer to User   | To identify who a message is being sent to   |
+| sharedSongs  | String  | The url of the song that is shared  |
+
+
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+* Messaging Screen 
+   * (Read/GET) Query all messages where the user is author and receiver.
+   ```swift
+  let query = PFQuery(className:"Message")
+  query.whereKey(("author", equalTo: currentUser) && ("receiver", equalTo: currentFriend) && ("author", equalTo: currentFriend) && "receiver", equalTo: currentUser)
+  query.order(byDescending: "createdAt")
+  query.findObjectsInBackground { (messages: [PFObject]?, error: Error?) in
+     if let error = error { 
+        print(error.localizedDescription)
+     } else if let messages= messages {
+        print("Successfully retrieved \(messages.count) messages.")
+      // TODO: Display messages accordingly...
+     }
+  }
+
+   * (Create/POST) Create a new message.
+ 
+### [OPTIONAL:] Existing API Endpoints 
+ * Base URL - https://developer.spotify.com/documentation/web-api/
+
+
+| HTTP Verb  | Endpoint | Description  |
+| ------------- | ------------- | ------------- |
+| GET  | /users/user_id/playlists   | Get user’s playlist  |
+| GET  | /playlists/playlist_id/tracks  | Get tracks in a playlist  |
+| POST  | /users/user_id/playlists   | Creates playlist   |
+| GET  | /search?type=album&include_external=audio | Search for an item/song  |
+| GET   | /me/player   | Get playback state  |
+| GET  | /me/player/currently-playing  | Get current playing track |
