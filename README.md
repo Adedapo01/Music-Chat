@@ -116,9 +116,8 @@ Spotify-like app where people can create a playlist or listen to any music. It w
       // TODO: Display messages accordingly...
      }
   }
-
-   * (Create/POST) Create a new message.
- 
+  ```
+    * (Create/POST) Create a new message. 
 ### [OPTIONAL:] Existing API Endpoints 
  * Base URL - https://developer.spotify.com/documentation/web-api/
 
