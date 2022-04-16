@@ -23,13 +23,13 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-
-* User Authentication
-* Users can view their profile
-* Users can scroll through a list of music and then click on specific music to get a detailed view of the song
-* Users can play, pause, and change the song being played
-* Users can share music
-* Users can chat with other users
+- [x] User Authentication
+- [ ] Users can view their profile
+- [ ] Users can scroll through a list of music 
+- [x] User can click on specific music to get a detailed view of the song
+- [ ] Users can play, pause, and change the song being played
+- [ ] Users can share music
+- [ ] Users can chat with other users
 
 **Optional Nice-to-have Stories**
 
