@@ -37,6 +37,16 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 * Users can add songs to a playlist
 * Section songs in genre or albums
 * Users can modify their username 
+*
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='walkthrough1.gif' title='Video Walkthrough1' width='' alt='Video Walkthrough' />
+<img src='walkthrough2.gif' title='Video Walkthrough2' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ### 2. Screen Archetypes
 
