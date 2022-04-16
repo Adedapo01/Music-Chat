@@ -1,4 +1,4 @@
-package com.example.musicchat
+package com.codepathgroupeleven.musicchat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent

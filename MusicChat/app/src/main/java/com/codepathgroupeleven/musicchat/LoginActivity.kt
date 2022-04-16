@@ -1,9 +1,9 @@
-package com.example.musicchat
+package com.codepathgroupeleven.musicchat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.example.musicchat.R
+import com.codepathgroupeleven.musicchat.R
 import com.spotify.sdk.android.auth.AccountsQueryParameters
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest

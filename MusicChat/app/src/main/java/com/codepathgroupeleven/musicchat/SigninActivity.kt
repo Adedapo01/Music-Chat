@@ -1,9 +1,9 @@
-package com.example.musicchat
+package com.codepathgroupeleven.musicchat
 
 import androidx.appcompat.app.AppCompatActivity
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
-import com.example.musicchat.SigninActivity
+import com.codepathgroupeleven.musicchat.SigninActivity
 import com.spotify.sdk.android.auth.AccountsQueryParameters.CLIENT_ID
 
 class SigninActivity : AppCompatActivity() {

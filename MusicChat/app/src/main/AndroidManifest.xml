@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.musicchat">
+    package="com.codepathgroupeleven.musicchat"
+    >
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -10,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicChat">
+        <activity
+            android:name=".TracksActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true" >
@@ -24,9 +30,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-<!--                <data-->
-<!--                    android:host="@string/intent_host"-->
-<!--                    android:scheme="@string/intent_scheme" />-->
+                <data
+                    android:host="callback"
+                    android:scheme="MusicChat"
+                    tools:ignore="AppLinkUrlError" />
+
+                <!--<data
+                    android:host="@string/intent_host"
+                    android:scheme="@string/intent_scheme" />-->
             </intent-filter>
         </activity>
         <activity
@@ -55,7 +66,9 @@
 
                 <data
                     android:host="callback"
-                    android:scheme="MusicChat" />
+                    android:scheme="MusicChat"
+                    tools:ignore="AppLinkUrlError"
+                    />
             </intent-filter>
 
             <!-- <intent-filter> -->
