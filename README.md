@@ -23,10 +23,12 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-- [x] User Authentication
+- [x] User can access a sign in Activity that directs them to a web brower to log in to spotify
+- [ ] User can authenticate using spotify 
+- [x] User can switch between different tabs - Home Activity, Chat Activity and Profile Activity using fragments and a Bottom Navigation View.
 - [ ] Users can view their profile
 - [ ] Users can scroll through a list of music 
-- [x] User can click on specific music to get a detailed view of the song
+- [ ] User can click on specific music to get a detailed view of the song
 - [ ] Users can play, pause, and change the song being played
 - [ ] Users can share music
 - [ ] Users can chat with other users
