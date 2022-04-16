@@ -60,7 +60,7 @@ class TracksActivity : AppCompatActivity() {
 
     }
     companion object{
-        private val token = "Bearer BQCPB6tNjW84CpY1qpbN8N-9theL7WR69y09vXLmzUoYLXsqwhEWAKEJb5kedKusemciyJB63Rd2EKS2lbEPKIkwYvwIKS1L0QwMIso7uhSnuIN-lBxAJmT1t876lNO1dqMDljTEPuD9LaSboKxqA1TkQfyoajT-WA6ulWNqO7Bf_A9AhAKS-DpCg6Zpf-N5Jg"
+        private val token = "Bearer <Token>"
 
     }
 }
