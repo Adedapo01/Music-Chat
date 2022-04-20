@@ -21,21 +21,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-//        var builder =
-//            AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
-//        builder.setScopes(Array<String>(1){"streaming"})
-//        var request = builder.build()
-//        AuthorizationClient.openLoginActivity(this,REQUEST_CODE,request)
+        loginWithSpotify()
 
         findViewById<Button>(R.id.loginBtn).setOnClickListener() {
 
-            var builder =
-                AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
-            builder.setScopes(Array<String>(1){"streaming"})
-            var request = builder.build()
+            loginWithSpotify()
 
-            AuthorizationClient.openLoginActivity(this,REQUEST_CODE,request)
         }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -58,11 +51,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun loginWithSpotify() {
+        var builder =
+            AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
+        builder.setScopes(Array<String>(1){"streaming"})
+        var request = builder.build()
+        AuthorizationClient.openLoginActivity(this,REQUEST_CODE,request)
+    }
+
     private fun goToMainActivity() {
         val i = Intent(this@LoginActivity, MainActivity::class.java)
         startActivity(i)
         finish()
     }
+
 
 
 
