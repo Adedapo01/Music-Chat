@@ -23,8 +23,8 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-- [x] User can access a sign in Activity that directs them to a web brower to log in to spotify
-- [ ] User can authenticate using spotify 
+- [x] User can access a login in Activity that prompts them to log in to spotify
+- [x] User can authenticate using spotify 
 - [x] User can switch between different tabs - Home Activity, Chat Activity and Profile Activity using fragments and a Bottom Navigation View.
 - [ ] Users can view their profile
 - [ ] Users can scroll through a list of music 
@@ -35,18 +35,16 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 
 **Optional Nice-to-have Stories**
 
-* Multiple users can listen to the same music at the same time
-* Users can add songs to a playlist
-* Section songs in genre or albums
-* Users can modify their username 
-*
+- [ ] Multiple users can listen to the same music at the same time
+- [ ] Users can add songs to a playlist
+- [ ] Section songs in genre or albums
+- [ ] Users can modify their username 
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='walkthrough1.gif' title='Video Walkthrough1' width='' alt='Video Walkthrough' />
-<img src='walkthrough2.gif' title='Video Walkthrough2' width='' alt='Video Walkthrough' />
+<img src='walkthrough.gif' title='Video Walkthrough1' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
