@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.codepathgroupeleven.musicchat"
-    >
+    package="com.codepathgroupeleven.musicchat">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -24,25 +24,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="callback"
-                    android:scheme="MusicChat"
-                    tools:ignore="AppLinkUrlError" />
-
-                <!--<data
-                    android:host="@string/intent_host"
-                    android:scheme="@string/intent_scheme" />-->
-            </intent-filter>
         </activity>
-        <activity
-            android:name=".SigninActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -58,21 +41,6 @@
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleInstance">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="callback"
-                    android:scheme="MusicChat"
-                    tools:ignore="AppLinkUrlError"
-                    />
-            </intent-filter>
-
-            <!-- <intent-filter> -->
-            <!-- </intent-filter> -->
         </activity>
     </application>
 
