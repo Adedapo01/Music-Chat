@@ -15,7 +15,10 @@
         android:theme="@style/Theme.MusicChat">
         <activity
             android:name=".TracksActivity"
-            android:exported="false" />
+            android:exported="false">
+
+        </activity>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true" >
@@ -29,10 +32,10 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
+                <!--/*musicChat://site.com-->
                 <data
-                    android:host="callback"
-                    android:scheme="MusicChat"
+                    android:host="site.com"
+                    android:scheme="musicChat"
                     tools:ignore="AppLinkUrlError" />
 
                 <!--<data
@@ -46,19 +49,33 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <intent-filter android:label="app">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="http"
+                    android:host="www.example.com"
+                    android:pathPrefix="/gizmos" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+            </intent-filter>
+            <intent-filter android:label="app">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data android:scheme="example"
+                    android:host="gizmos" />
+            </intent-filter>
         </activity>
 
         <activity
             android:name=".MySpotifyAuthorizationActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/app_name"
             android:launchMode="singleInstance">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -69,7 +86,7 @@
                     android:scheme="MusicChat"
                     tools:ignore="AppLinkUrlError"
                     />
-            </intent-filter>
+            </intent-filter>-->
 
             <!-- <intent-filter> -->
             <!-- </intent-filter> -->

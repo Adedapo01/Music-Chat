@@ -1,7 +1,11 @@
 package com.codepathgroupeleven.musicchat
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -11,11 +15,56 @@ import androidx.fragment.app.FragmentManager
 
 import com.codepathgroupeleven.musicchat.fragments.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.spotify.sdk.android.auth.AuthorizationClient
+import com.spotify.sdk.android.auth.AuthorizationResponse
+import android.content.SharedPreferences
+import com.google.android.material.internal.ContextUtils.getActivity
+
+
+private val REQUEST_CODE = 1337
+val key = ""
+
 
 class MainActivity : AppCompatActivity() {
+    val bundle = Bundle()
+    lateinit var token : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var token = "Some token From Server"
+
+
+
+        //Retrieve token wherever necessary
+
+
+
+         //second parameter default value.
+
+        val action: String? = intent?.action
+        val data: Uri? = intent?.data
+        Log.i("Main Activity", "data: $data")
+        if (data != null) {
+            var response: AuthorizationResponse = AuthorizationResponse.fromUri(data);
+
+            when (response.getType()) {
+                AuthorizationResponse.Type.TOKEN -> {
+                    token = "Bearer ${response.accessToken}"
+                    val preferences: SharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE)
+                    preferences.edit().putString("TOKEN", token).apply()
+
+                    bundle.putString("token", token)
+
+
+                }
+                AuthorizationResponse.Type.ERROR -> {Log.i("Main Activity", response.error)}
+
+            }
+            // Response was successful and contains auth token
+
+            // Handle other cases
+        }
 
         val fragmentManager: FragmentManager = supportFragmentManager
 
@@ -26,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.action_home -> {
                     fragmentToShow = HomeFragment()
+                    fragmentToShow.arguments = bundle
                     Toast.makeText(this, "Home is clicked!", Toast.LENGTH_LONG ).show()
                 }
                 R.id.action_chat -> {Toast.makeText(this, "Chat is clicked!", Toast.LENGTH_LONG ).show()}
@@ -40,5 +90,8 @@ class MainActivity : AppCompatActivity() {
         //default fragment view when opening into the app
         findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.action_home
     }
+
+
+
 
 }

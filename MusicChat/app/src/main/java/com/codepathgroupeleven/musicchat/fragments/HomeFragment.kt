@@ -16,10 +16,15 @@ import com.codepathgroupeleven.musicchat.models.Playlist
 import retrofit2.HttpException
 import java.io.IOException
 import com.google.gson.Gson
+import android.content.SharedPreferences
+
+
+
 
 
 class HomeFragment() : Fragment() {
 
+    var token : String = ""
     lateinit var playlistRecyclerView: RecyclerView
     lateinit var adapter: PlaylistAdapter
     var allPlaylists: MutableList<Playlist> = mutableListOf()
@@ -33,6 +38,12 @@ class HomeFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+        val sharedPreferences = requireActivity()!!.applicationContext.getSharedPreferences("MY_APP",   Context.MODE_PRIVATE) // kotlin
+
+        token = sharedPreferences.getString("TOKEN","").toString()
+
+        //token = arguments?.getString("token").toString()
+        Log.i("Fahmi", "token value: $token")
         //This is where we set up our views and click listeners
         playlistRecyclerView = view.findViewById(R.id.playlistRecyclerView)
         adapter = PlaylistAdapter(requireContext(), allPlaylists)
@@ -97,7 +108,7 @@ class HomeFragment() : Fragment() {
     }
 
     companion object{
-        private val token = "Bearer BQCPB6tNjW84CpY1qpbN8N-9theL7WR69y09vXLmzUoYLXsqwhEWAKEJb5kedKusemciyJB63Rd2EKS2lbEPKIkwYvwIKS1L0QwMIso7uhSnuIN-lBxAJmT1t876lNO1dqMDljTEPuD9LaSboKxqA1TkQfyoajT-WA6ulWNqO7Bf_A9AhAKS-DpCg6Zpf-N5Jg"
+
         private val TAG = "HomeFragment"
     }
 
