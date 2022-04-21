@@ -43,9 +43,7 @@
                     android:scheme="@string/intent_scheme" />-->
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SigninActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

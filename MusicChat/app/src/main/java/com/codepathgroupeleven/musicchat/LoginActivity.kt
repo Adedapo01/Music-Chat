@@ -29,21 +29,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        authenticateSpotify()
         findViewById<Button>(R.id.loginBtn).setOnClickListener {
 
             authenticateSpotify()
-            //msharedPreferences = this.getSharedPreferences("SPOTIFY", 0);
-//          val REDIRECT_URI = "http://localhost:8888/callback"
-            //val REDIRECT_URI = "MusicChat://callback"
-            /*val REDIRECT_URI = "https://www.google.com/"
-            var builder =
-                AuthorizationRequest.Builder("4e7b34d3b9b041769632a795891d2685", AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
 
-            builder.setScopes(arrayOf("streaming"))
-
-            var request = builder.build()
-
-            AuthorizationClient.openLoginInBrowser(this, request)*/
 
         }
 
