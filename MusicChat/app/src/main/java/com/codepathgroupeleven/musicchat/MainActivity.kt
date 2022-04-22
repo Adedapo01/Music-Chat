@@ -26,22 +26,17 @@ val key = ""
 
 
 class MainActivity : AppCompatActivity() {
-    val bundle = Bundle()
-    lateinit var token : String
+    //val bundle = Bundle()
+    //private lateinit var sessionManager: SessionManager
+    var token : String = "Some token From Server"
+    lateinit var prefs : SharedPreferences//= getSharedPreferences("MY_APP",   Context.MODE_PRIVATE)
+    lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var token = "Some token From Server"
-
-
-
-        //Retrieve token wherever necessary
-
-
-
-         //second parameter default value.
-
+        //var token = "Some token From Server"
+        //get data (Token) back from the redirect uri after authenticating
         val action: String? = intent?.action
         val data: Uri? = intent?.data
         Log.i("Main Activity", "data: $data")
@@ -51,10 +46,15 @@ class MainActivity : AppCompatActivity() {
             when (response.getType()) {
                 AuthorizationResponse.Type.TOKEN -> {
                     token = "Bearer ${response.accessToken}"
-                    val preferences: SharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE)
-                    preferences.edit().putString("TOKEN", token).apply()
-
-                    bundle.putString("token", token)
+                    /*val editor = prefs.edit()
+                    editor.putString(USER_TOKEN, token)
+                    editor.apply()*/
+                    //
+                    prefs = getSharedPreferences("MY_APP", Context.MODE_PRIVATE)
+                    //prefs.edit().putString(USER_TOKEN, token).apply()
+                    sessionManager = SessionManager(this)
+                    sessionManager.saveAuthToken(response.accessToken)
+                    //bundle.putString("token", token)*/
 
 
                 }
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.action_home -> {
                     fragmentToShow = HomeFragment()
-                    fragmentToShow.arguments = bundle
+                    //fragmentToShow.arguments = bundle
                     Toast.makeText(this, "Home is clicked!", Toast.LENGTH_LONG ).show()
                 }
                 R.id.action_chat -> {Toast.makeText(this, "Chat is clicked!", Toast.LENGTH_LONG ).show()}
@@ -92,6 +92,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
+    companion object {
+        const val USER_TOKEN = "user_token"
+    }
 
 }

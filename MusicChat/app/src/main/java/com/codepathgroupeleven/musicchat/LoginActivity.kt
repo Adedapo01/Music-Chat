@@ -24,16 +24,28 @@ private var editor: SharedPreferences.Editor? = null
 private var msharedPreferences: SharedPreferences? = null
 private val SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private";
 class LoginActivity : AppCompatActivity() {
-
+    lateinit var prefs : SharedPreferences//= getSharedPreferences("MY_APP",   Context.MODE_PRIVATE)
+    lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        authenticateSpotify()
+        sessionManager = SessionManager(this)
+        if (sessionManager.fetchAuthToken() == null || sessionManager.fetchAuthToken() == ""){
+            authenticateSpotify()
+            finish()
+        }else{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
+        }
+        //Log.i("Login", "${sessionManager.fetchAuthToken()}")
+        //authenticateSpotify()
+        //finish()
         findViewById<Button>(R.id.loginBtn).setOnClickListener {
 
             authenticateSpotify()
-
+            finish()
 
         }
 

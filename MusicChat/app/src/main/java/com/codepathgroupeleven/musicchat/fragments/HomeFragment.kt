@@ -9,26 +9,25 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.codepathgroupeleven.musicchat.PlaylistAdapter
-import com.codepathgroupeleven.musicchat.R
-import com.codepathgroupeleven.musicchat.RetrofitInstance
 import com.codepathgroupeleven.musicchat.models.Playlist
 import retrofit2.HttpException
 import java.io.IOException
 import com.google.gson.Gson
 import android.content.SharedPreferences
-
-
-
+import com.codepathgroupeleven.musicchat.*
 
 
 class HomeFragment() : Fragment() {
 
-    var token : String = ""
+
     lateinit var playlistRecyclerView: RecyclerView
     lateinit var adapter: PlaylistAdapter
     var allPlaylists: MutableList<Playlist> = mutableListOf()
-
+    lateinit var apiClient: ApiClient
+    lateinit var prefs : SharedPreferences//= getSharedPreferences("MY_APP",   Context.MODE_PRIVATE)
+    lateinit var sessionManager: SessionManager
+    //val sessionManager: SessionManager = SessionManager(prefs)
+    var token = ""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -38,13 +37,22 @@ class HomeFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        val sharedPreferences = requireActivity()!!.applicationContext.getSharedPreferences("MY_APP",   Context.MODE_PRIVATE) // kotlin
+        /*val sharedPreferences = requireActivity()!!.applicationContext.getSharedPreferences("MY_APP",   Context.MODE_PRIVATE) // kotlin
 
-        token = sharedPreferences.getString("TOKEN","").toString()
+        */
 
         //token = arguments?.getString("token").toString()
-        Log.i("Fahmi", "token value: $token")
+        //Log.i("Fahmi", "token value: $token")
         //This is where we set up our views and click listeners
+        //val session = SessionManager(requireContext())
+      //
+        apiClient = ApiClient(requireContext())
+        Log.i(TAG, "Home fragment token ")
+        prefs = requireActivity()!!.applicationContext.getSharedPreferences("MY_APP",   Context.MODE_PRIVATE)
+
+        //prefs.edit().putString(USER_TOKEN, token).apply()
+        sessionManager = SessionManager(requireContext())
+        token = sessionManager.fetchAuthToken().toString()
         playlistRecyclerView = view.findViewById(R.id.playlistRecyclerView)
         adapter = PlaylistAdapter(requireContext(), allPlaylists)
         playlistRecyclerView.adapter = adapter
@@ -73,11 +81,11 @@ class HomeFragment() : Fragment() {
     }
 
     fun getAllPlaylists() {
-
+        Log.i(TAG, "Get all playlists...")
         lifecycleScope.launchWhenCreated {
             Log.i(TAG, "It is calling the function!")
             val response = try{
-                RetrofitInstance.api.getAllPlaylists(token = token)
+                apiClient.api.getAllPlaylists()
 
             } catch(e: IOException){
                 Log.e(TAG, "IOException")
@@ -110,6 +118,7 @@ class HomeFragment() : Fragment() {
     companion object{
 
         private val TAG = "HomeFragment"
+        const val USER_TOKEN = "user_token"
     }
 
 
