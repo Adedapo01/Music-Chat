@@ -17,4 +17,6 @@ interface PlaylistApi {
     suspend fun getAllPlaylists(): Response<JsonObject>
     @GET("/v1/playlists/{playlist_id}/tracks")
     suspend fun getAllTracks(@Path(value="playlist_id", encoded=false)  playlist_id: String): Response<JsonObject>
+    @GET("/v1/me")
+    suspend fun getUserProfile(): Response<JsonObject>
 }

@@ -1,5 +1,6 @@
 package com.codepathgroupeleven.musicchat
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -30,18 +31,26 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        prefs = this.getSharedPreferences(this.getString(R.string.app_name), Context.MODE_PRIVATE)
+        val hasToken: Boolean = prefs.contains(SessionManager.USER_TOKEN)
         sessionManager = SessionManager(this)
-        if (sessionManager.fetchAuthToken() == null || sessionManager.fetchAuthToken() == ""){
-            authenticateSpotify()
-            finish()
-        }else{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
 
+        if (hasToken){
+            if (sessionManager.fetchAuthToken() == null || sessionManager.fetchAuthToken() == ""){
+                Log.i("Login", "${sessionManager.fetchAuthToken()}")
+                authenticateSpotify()
+                finish()
+            }else if (sessionManager.fetchAuthToken() == SessionManager.LOGGED_OUT){
+                Log.i("LoginActivity", "User has logged out!")
+            } else{
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+
+            }
         }
-        //Log.i("Login", "${sessionManager.fetchAuthToken()}")
-        //authenticateSpotify()
-        //finish()
+
+
+
         findViewById<Button>(R.id.loginBtn).setOnClickListener {
 
             authenticateSpotify()

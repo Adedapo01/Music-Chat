@@ -1,6 +1,7 @@
 package com.codepathgroupeleven.musicchat.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -98,6 +99,12 @@ class HomeFragment() : Fragment() {
                 return@launchWhenCreated
             }
             Log.i(TAG, "$response")
+            if (response.code() == 401) {
+                sessionManager.saveAuthToken("")
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                requireContext().startActivity(intent)
+
+            }
             if (response.isSuccessful && response.body() != null) {
                 Log.i(TAG, "Successful")
                 val gson = Gson()

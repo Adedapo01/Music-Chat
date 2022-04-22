@@ -3,6 +3,10 @@ package com.codepathgroupeleven.musicchat
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
+
+
+
 
 /**
  * Session manager to save and fetch data from SharedPreferences
@@ -13,10 +17,20 @@ class SessionManager (context: Context) {
 
     companion object {
         const val USER_TOKEN = "user_token"
+        const val LOGGED_OUT = "logged_out"
     }
     /*init {
         prefs = pref
     }*/
+    /**
+     * Function to remove the auth token when logging out
+     */
+    fun removeAuthToken(){
+        val editor = prefs.edit()
+        editor.remove(USER_TOKEN)
+        editor.apply()
+
+    }
 
     /**
      * Function to save auth token

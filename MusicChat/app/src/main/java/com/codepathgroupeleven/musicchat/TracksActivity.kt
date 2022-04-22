@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.codepathgroupeleven.musicchat.PlaylistAdapter.Companion.playlistTracks
 import com.codepathgroupeleven.musicchat.fragments.HomeFragment
 import com.codepathgroupeleven.musicchat.models.Playlist
@@ -18,27 +20,32 @@ private const val TAG = "TracksActivity"
 class TracksActivity : AppCompatActivity() {
     lateinit var playlistId: String
     lateinit var token : String
-    //val apiClient: ApiClient = ApiClient(this)
+    lateinit var apiClient: ApiClient
     var tracks: MutableList<Track> = mutableListOf()
-    //val sessionManager = SessionManager(this)
+    lateinit var trackRecyclerView: RecyclerView
+    lateinit var adapter: TrackAdapter
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tracks)
-        /*val sharedPreferences = this.getSharedPreferences("MY_APP",   Context.MODE_PRIVATE) // kotlin
-
-        token = sharedPreferences.getString("TOKEN","").toString()*/
+        apiClient = ApiClient(this)
         val playlist = intent.getParcelableExtra<Playlist>(playlistTracks) as Playlist
         Log.i(TAG, "playlist is ${playlist.id}")
         playlistId = playlist.id
-        //getAllTracks()
+        trackRecyclerView = findViewById(R.id.tracksRecyclerView)
+        adapter = TrackAdapter(this, tracks)
+        trackRecyclerView.adapter = adapter
+        trackRecyclerView.layoutManager = LinearLayoutManager(this)
+        getAllTracks()
     }
 
-    /*fun getAllTracks() {
+    fun getAllTracks() {
 
         lifecycleScope.launchWhenCreated {
 
             val response = try{
-                RetrofitInstance.api.getAllTracks(token = sessionManager.fetchAuthToken().toString(), playlist_id = playlistId)
+                apiClient.api.getAllTracks(playlist_id = playlistId)
 
             } catch(e: IOException){
                 Log.e(TAG, "IOException")
@@ -61,15 +68,15 @@ class TracksActivity : AppCompatActivity() {
                 //Log.i(TAG, name)
                 tracks.addAll(Track.fromJsonArray(items))
                 Log.i(TAG, "List of Tracks: $tracks")
-            *//*var it = items?.getAsJsonArray("items")
+            //var it = items?.getAsJsonArray("items")
 
 
                 adapter.notifyDataSetChanged()
-                Log.i(HomeFragment.TAG, "playlist: $allPlaylists")*//*
+                //Log.i(HomeFragment.TAG, "playlist: $allPlaylists")
             }
         }
 
-    }*/
+    }
     companion object{
 /*
         private val token = "Bearer BQB7wx5FlmhdZdoP5KoSFeTnXwwDTcqqRh0qU_ZlKo0hg14zejXAWEuKvk-nh_GK37MvCJpUFaDL-1vNDHdd7NMCNDI5lOGj7MlxtI6MmRyo-apoYHNy3dhAzlFo6sfXYhOgx1KKJYceYv9diDheBDGN4ZsnLkp8aNl3q7fWLk1U9Yumjtgl3gbKoxGhDFlqprgFA12EycsMT2Z22cIOOZmnC9duiug5Dlr506phbKXnIeyFPPPRAxYE2xS2Dyew7Dn5zXqG7osPLvcHzlcsMkC_ge9i6-qz6hUGTec-Gb3su4AU"

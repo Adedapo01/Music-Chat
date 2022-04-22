@@ -18,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationResponse
 import android.content.SharedPreferences
+import com.codepathgroupeleven.musicchat.fragments.ProfileFragment
 import com.google.android.material.internal.ContextUtils.getActivity
 
 
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
                     editor.putString(USER_TOKEN, token)
                     editor.apply()*/
                     //
+
                     prefs = getSharedPreferences("MY_APP", Context.MODE_PRIVATE)
                     //prefs.edit().putString(USER_TOKEN, token).apply()
                     sessionManager = SessionManager(this)
@@ -58,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 }
-                AuthorizationResponse.Type.ERROR -> {Log.i("Main Activity", response.error)}
+                AuthorizationResponse.Type.ERROR -> {Log.i("Main Activity", response.expiresIn.toString())}
 
             }
             // Response was successful and contains auth token
@@ -76,10 +78,16 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_home -> {
                     fragmentToShow = HomeFragment()
                     //fragmentToShow.arguments = bundle
-                    Toast.makeText(this, "Home is clicked!", Toast.LENGTH_LONG ).show()
+                    //Toast.makeText(this, "Home is clicked!", Toast.LENGTH_LONG ).show()
                 }
-                R.id.action_chat -> {Toast.makeText(this, "Chat is clicked!", Toast.LENGTH_LONG ).show()}
-                R.id.action_profile -> {Toast.makeText(this, "Profile is clicked!", Toast.LENGTH_LONG ).show()}
+                R.id.action_chat -> {
+
+                    Toast.makeText(this, "Chat is clicked!", Toast.LENGTH_LONG ).show()
+                }
+                R.id.action_profile -> {
+                    fragmentToShow = ProfileFragment()
+                    //Toast.makeText(this, "Profile is clicked!", Toast.LENGTH_LONG ).show()
+                }
             }
             if (fragmentToShow!=null){
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragmentToShow).commit()

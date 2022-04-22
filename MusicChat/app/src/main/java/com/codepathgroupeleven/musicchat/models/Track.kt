@@ -5,13 +5,16 @@ import android.os.Parcelable
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import kotlinx.parcelize.Parcelize
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 @Parcelize
 data class Track (
     var artistName: String = "",
     var trackId: String = "",
     var image: String? = "",
-    var duration: Double? = 0.0) : Parcelable {
+    var trackName: String = "",
+    var duration: String? = "") : Parcelable {
 
 
     companion object {
@@ -21,9 +24,15 @@ data class Track (
 
             track.artistName = jsonObject.getAsJsonObject("track").asJsonObject.getAsJsonArray("artists")[0].asJsonObject["name"].asString
             track.trackId = jsonObject.getAsJsonObject("track").asJsonObject["id"].asString
+            track.trackName = jsonObject.getAsJsonObject("track").asJsonObject["name"].asString
             track.image = jsonObject.getAsJsonObject("track").asJsonObject.getAsJsonObject("album").getAsJsonArray("images").get(0).asJsonObject["url"].asString
             var dur = jsonObject.getAsJsonObject("track").asJsonObject["duration_ms"].asLong
-            track.duration = (dur * 0.001) * 0.0166667
+
+            var calcDur = (dur * 0.001) * 0.0166667
+
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.DOWN
+            track.duration = df.format(calcDur)
 
 
 
