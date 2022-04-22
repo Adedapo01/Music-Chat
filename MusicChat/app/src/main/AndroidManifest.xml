@@ -17,9 +17,6 @@
             android:name=".MediaPlayerActivity"
             android:exported="false" />
         <activity
-            android:name=".models.MediaPlayerActivity"
-            android:exported="false" />
-        <activity
             android:name=".TracksActivity"
             android:exported="false" />
         <activity
