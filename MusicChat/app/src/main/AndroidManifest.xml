@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.codepathgroupeleven.musicchat"
-    >
+    package="com.codepathgroupeleven.musicchat">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -14,14 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicChat">
         <activity
+            android:name=".MediaPlayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".models.MediaPlayerActivity"
+            android:exported="false" />
+        <activity
             android:name=".TracksActivity"
-            android:exported="false">
-
-        </activity>
-
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,48 +35,53 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!--/*musicChat://site.com-->
+                <!-- /*musicChat://site.com -->
                 <data
                     android:host="site.com"
                     android:scheme="musicChat"
                     tools:ignore="AppLinkUrlError" />
 
-                <!--<data
+                <!--
+                    <data
                     android:host="@string/intent_host"
-                    android:scheme="@string/intent_scheme" />-->
+                    android:scheme="@string/intent_scheme" />
+                -->
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter android:label="app">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
-                <data android:scheme="http"
+                <data
                     android:host="www.example.com"
-                    android:pathPrefix="/gizmos" />
-                <!-- note that the leading "/" is required for pathPrefix-->
+                    android:pathPrefix="/gizmos"
+                    android:scheme="http" />
+                <!-- note that the leading "/" is required for pathPrefix -->
             </intent-filter>
             <intent-filter android:label="app">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "example://gizmos” -->
-                <data android:scheme="example"
-                    android:host="gizmos" />
+                <data
+                    android:host="gizmos"
+                    android:scheme="example" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MySpotifyAuthorizationActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:launchMode="singleInstance">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -84,7 +92,9 @@
                     android:scheme="MusicChat"
                     tools:ignore="AppLinkUrlError"
                     />
-            </intent-filter>-->
+            </intent-filter>
+            -->
+
 
             <!-- <intent-filter> -->
             <!-- </intent-filter> -->

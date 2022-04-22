@@ -5,6 +5,7 @@ import android.content.Intent
 import com.spotify.sdk.android.auth.AuthorizationResponse
 
 class MySpotifyAuthorizationActivity : AppCompatActivity() {
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         val uri = intent.data
@@ -20,4 +21,5 @@ class MySpotifyAuthorizationActivity : AppCompatActivity() {
             }
         }
     }
+
 }

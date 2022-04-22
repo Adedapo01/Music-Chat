@@ -17,7 +17,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.util.Log
 
-
 private val CLIENT_ID = "ad75cbd53f034c90960dcd95a690dd9f"
 private val REDIRECT_URI = "example://gizmos"
 private val REQUEST_CODE = 1337
