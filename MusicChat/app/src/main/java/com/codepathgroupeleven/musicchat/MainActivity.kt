@@ -78,7 +78,9 @@ class MainActivity : AppCompatActivity() {
                     //fragmentToShow.arguments = bundle
                     Toast.makeText(this, "Home is clicked!", Toast.LENGTH_LONG ).show()
                 }
-                R.id.action_chat -> {Toast.makeText(this, "Chat is clicked!", Toast.LENGTH_LONG ).show()}
+                R.id.action_chat -> {
+                    Toast.makeText(this, "Chat is clicked!", Toast.LENGTH_LONG ).show()
+                }
                 R.id.action_profile -> {Toast.makeText(this, "Profile is clicked!", Toast.LENGTH_LONG ).show()}
             }
             if (fragmentToShow!=null){
