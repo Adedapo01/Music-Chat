@@ -1,14 +1,17 @@
 package com.codepathgroupeleven.musicchat
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.codepathgroupeleven.musicchat.PlaylistAdapter.Companion.playlistTracks
 import com.codepathgroupeleven.musicchat.models.Track
 
 class TrackAdapter(val context: Context, val tracks: List<Track>)
@@ -24,6 +27,7 @@ class TrackAdapter(val context: Context, val tracks: List<Track>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val track = tracks.get(position)
         holder.bind(track)
+
     }
 
     override fun getItemCount() = tracks.size
@@ -53,8 +57,23 @@ class TrackAdapter(val context: Context, val tracks: List<Track>)
             val intent = Intent(view!!.getContext(), TracksActivity::class.java)
             intent.putExtra(playlistTracks, playlist)
             view.getContext().startActivity(intent)*/
+
+            val mediaInfo = tracks[adapterPosition]
+            Log.i("Media Info", "$mediaInfo")
+            //use the intent system to navigate to tracksactivity when a playlist is clicked
+            val intent = Intent(view!!.getContext(), MediaPlayerActivity::class.java)
+           intent.putExtra("song", mediaInfo)
+            view.getContext().startActivity(intent)
+
+
+
         }
+//        val intent = Intent(view!!.getContext(), TracksActivity::class.java)
+//        val songInfo = {tracks[adapterPosition]}
+//        Intent(this, MediaPlayerActivity::class.java)
+//        startActivity(intent)
     }
+
 
     companion object{
         //val playlistTracks = "playlistTracks"
