@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.bumptech.glide.Glide
 import com.codepathgroupeleven.musicchat.models.Playlist
 import com.codepathgroupeleven.musicchat.models.Song
 import com.codepathgroupeleven.musicchat.models.Track
@@ -24,6 +26,8 @@ class MediaPlayerActivity : AppCompatActivity() {
         val song = intent.getParcelableExtra<Track>("song") as Track
         Log.i(TAG, "song is ${song.trackId}")
         trackInfo.text = song.trackName + " - " + song.artistName
+
+        Glide.with(applicationContext).load(song.image).centerCrop().into(trackImage)
 
 
 
