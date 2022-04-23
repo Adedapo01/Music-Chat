@@ -28,7 +28,7 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 - [x] User can switch between different tabs - Home Activity, Chat Activity and Profile Activity using fragments and a Bottom Navigation View.
 - [x] Users can view their profile
 - [x] Users can scroll through a list of music 
-- [ ] User can click on specific music to get a detailed view of the song
+- [x] User can click on specific music to get a detailed view of the song
 - [ ] Users can play, pause, and change the song being played
 - [ ] Users can share music
 - [ ] Users can chat with other users
