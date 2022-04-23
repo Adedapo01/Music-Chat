@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import com.codepathgroupeleven.musicchat.models.Playlist
+import com.codepathgroupeleven.musicchat.models.Song
+import com.codepathgroupeleven.musicchat.models.Track
 
 class MediaPlayerActivity : AppCompatActivity() {
 
@@ -17,9 +20,12 @@ class MediaPlayerActivity : AppCompatActivity() {
 
         trackInfo = findViewById(R.id.musicInfo)
         trackImage = findViewById(R.id.musicCover)
-////       val song = intent.getParcelableExtra<Song> as Song
-//        val songInfo = intent.getExtras()
-//        Log.i(TAG, "song is $songInfo")
+
+        val song = intent.getParcelableExtra<Track>("song") as Track
+        Log.i(TAG, "song is ${song.trackId}")
+        trackInfo.text = song.trackName + " - " + song.artistName
+
+
 
 //        getSong()
     }
