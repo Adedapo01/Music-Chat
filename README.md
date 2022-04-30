@@ -44,7 +44,7 @@ Spotify-like app where people can create a playlist or listen to any music. It w
 
 Here's a walkthrough of implemented user stories:
 
-<img src='MusicChat/VideoWalkthrough.gif' title='Video Walkthrough1' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/sFZtSx7IJZ.gif' title='Video Walkthrough1' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
